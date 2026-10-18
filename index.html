@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0756a5">
+  <title>Radiant Pharma | Product Portfolio</title>
+  <meta name="description" content="Explore the Radiant Pharma product portfolio.">
+
+  <style>
+    :root {
+      --blue: #0756a5;
+      --dark-blue: #07366b;
+      --light-blue: #eaf4ff;
+      --white: #ffffff;
+      --text: #243449;
+      --muted: #65758b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #f3f8fe;
+      line-height: 1.6;
+    }
+
+    .hero {
+      padding: 48px 20px 42px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #07366b, #0879d5);
+      border-bottom: 5px solid #70c4ff;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 12px;
+      border: 2px solid white;
+      border-radius: 50%;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 48px);
+      letter-spacing: 2px;
+    }
+
+    .hero .subtitle {
+      margin: 8px 0 0;
+      font-size: 17px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero .intro {
+      max-width: 580px;
+      margin: 18px auto 0;
+      color: #e5f2ff;
+      font-size: 15px;
+    }
+
+    main {
+      width: min(1100px, 92%);
+      margin: 35px auto 55px;
+    }
+
+    .section-heading {
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--dark-blue);
+      font-size: clamp(24px, 4vw, 32px);
+    }
+
+    .section-heading p {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .search {
+      display: block;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto 28px;
+      padding: 14px 18px;
+      border: 1px solid #cbdced;
+      border-radius: 12px;
+      background: white;
+      font-size: 16px;
+      outline-color: var(--blue);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 22px;
+    }
+
+    .product-card {
+      overflow: hidden;
+      border: 1px solid #e0eaf5;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 5px 20px rgba(15, 60, 110, 0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(15, 60, 110, 0.12);
+    }
+
+    .product-image {
+      display: block;
+      width: 100%;
+      height: 195px;
+      padding: 12px;
+      object-fit: contain;
+      background: #edf6ff;
+    }
+
+    .image-placeholder {
+      display: flex;
+      height: 195px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--blue);
+      background: linear-gradient(145deg, #e8f4ff, #f8fbff);
+    }
+
+    .image-placeholder span {
+      font-size: 48px;
+    }
+
+    .image-placeholder small {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .product-info { padding: 19px; }
+
+    .product-label {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .product-info h3 {
+      margin: 7px 0;
+      color: var(--dark-blue);
+      font-size: 20px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .composition-title {
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .composition {
+      margin: 4px 0 0;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .empty {
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .contact {
+      margin-top: 38px;
+      padding: 25px 20px;
+      border-radius: 16px;
+      text-align: center;
+      background: var(--light-blue);
+    }
+
+    .contact h2 {
+      margin: 0;
+      color: var(--dark-blue);
+    }
+
+    .contact p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      color: #dcecff;
+      background: #062d58;
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 35px 16px; }
+      main { width: 92%; margin-top: 27px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .product-image, .image-placeholder { height: 210px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="brand-mark" aria-hidden="true">R</div>
+    <h1>RADIANT PHARMA</h1>
+    <p class="subtitle">Our Product Portfolio</p>
+    <p class="intro">
+      Discover our pharmaceutical product range.
+      For product information, please contact our team.
+    </p>
+  </header>
+
+  <main>
+    <section class="section-heading">
+      <h2>Explore Our Products</h2>
+      <p>Quality information. Clear presentation. Trusted care.</p>
+    </section>
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="Search products or compositions..."
+      aria-label="Search products"
+    >
+
+    <section id="productGrid" class="product-grid"
+      aria-label="Product catalog"></section>
+
+    <section class="contact">
+      <h2>For Product Enquiries</h2>
+      <p>Please contact your Radiant Pharma representative
+        for approved product information.</p>
+      <!-- Add your official phone or email here if required. -->
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Radiant Pharma.
+    All rights reserved.
+  </footer>
+
+  <script>
+    /*
+      EDIT YOUR PRODUCT LIST HERE.
+
+      Image files go inside the "images" folder.
+      Example: images/product-01.jpg
+
+      Replace the sample names and compositions with
+      your actual, verified product information.
+    */
+
+    const products = [
+      {
+        name: "Product Name 01",
+        composition: "Enter approved composition and strength",
+        image: "images/product-01.jpg"
+      },
+      {
+        name: "Product Name 02",
+        composition: "Enter approved composition and strength",
+        image: "images/product-02.jpg"
+      },
+      {
+        name: "Product Name 03",
+        composition: "Enter approved composition and strength",
+        image: "images/product-03.jpg"
+      },
+      {
+        name: "Product Name 04",
+        composition: "Enter approved composition and strength",
+        image: "images/product-04.jpg"
+      }
+    ];
+
+    const grid = document.getElementById("productGrid");
+    const search = document.getElementById("search");
+
+    function renderProducts(query = "") {
+      const term = query.trim().toLowerCase();
+
+      const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(term) ||
+        product.composition.toLowerCase().includes(term)
+      );
+
+      if (filtered.length === 0) {
+        grid.innerHTML =
+          '<p class="empty">No matching products found.</p>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(product => `
+        <article class="product-card">
+          <img
+            class="product-image"
+            src="${escapeHTML(product.image)}"
+            alt="${escapeHTML(product.name)} packaging"
+            loading="lazy"
+            onerror="this.style.display='none';
+              this.nextElementSibling.style.display='flex';"
+          >
+          <div class="image-placeholder" style="display:none">
+            <span aria-hidden="true">✚</span>
+            <small>RADIANT PHARMA</small>
+          </div>
+          <div class="product-info">
+            <div class="product-label">Product Portfolio</div>
+            <h3>${escapeHTML(product.name)}</h3>
+            <div class="composition-title">Composition</div>
+            <p class="composition">
+              ${escapeHTML(product.composition)}
+            </p>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    search.addEventListener("input", event => {
+      renderProducts(event.target.value);
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    renderProducts();
+  </script>
+</body>
+</html>
