@@ -729,8 +729,7 @@ Only use verified product information and approved images.
 */
 
 const products = [
-  "{
-id: 1, name: ""ACDOT"", composition: ""Aceclofenac 100mg + Drotaverine Hydrochloride 80mg"", image: ""images/ACDOT.jpg"" }, "
+{id: 1, name: ""ACDOT"", composition: ""Aceclofenac 100mg + Drotaverine Hydrochloride 80mg"", image: ""images/ACDOT.jpg"" }, "
 {id: 2, name: "ACPTAB SP", composition: "Aceclofenac 100mg + Paracetamol 325mg + Serratiopeptidase 15mg", image: "images/ACPTAB SP.jpg" }, 
 {id: 3, name: "ACPTAB SR 200", composition: "Aceclofenac 200mg", image: "images/ACPTAB SR 200.jpg" }, 
 {id: 4, name: "ACPTAB T", composition: "Aceclofenac 100mg + Thiocolchicoside 4mg", image: "images/ACPTAB T.jpg" }, 
@@ -869,12 +868,18 @@ function productImageHTML(product, extraClass = "") {
   const name = escapeHTML(product.name);
 
   return `
-    <img class="${extraClass}"
+    <img
+      class="${extraClass}"
       src="${escapeHTML(image)}"
       alt="${name} packaging"
       loading="lazy"
-      onerror="this.style.display='none';
-        this.nextElementSibling.style.display='flex';">
+      onerror="
+        this.onerror = null;
+        this.style.display = 'none';
+        const fallback = this.parentElement.querySelector('.placeholder');
+        if (fallback) fallback.style.display = 'flex';
+      "
+    >
     <div class="placeholder" style="display:none">
       <span aria-hidden="true">✚</span>
       <small>RADIANT PHARMA</small>
@@ -996,12 +1001,20 @@ function openProduct(id) {
   if (!product) return;
 
   currentProduct = product;
+
   $("modalCategory").textContent = product.category || "Product Details";
   $("modalName").textContent = product.name;
   $("modalComposition").textContent = product.composition;
-  $("modalImageArea").innerHTML = productImageHTML(product, "");
-  $("modalImageArea").querySelector("img").style.maxHeight = "360px";
-  $("modalImageArea").querySelector("img").style.width = "100%";
+  $("modalImageArea").innerHTML = productImageHTML(product, "modal-product-image");
+
+  const modalImg = $("modalImageArea").querySelector("img");
+
+  if (modalImg) {
+    modalImg.style.maxHeight = "360px";
+    modalImg.style.width = "100%";
+    modalImg.style.objectFit = "contain";
+  }
+
   updateModalFavorite();
   dialog.showModal();
 }
